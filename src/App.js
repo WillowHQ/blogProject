@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import contentful from 'contentful-management';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import BlogContainer from './BlogContainer';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import logo from './logo.svg';
 
 import { auth, googleAuthProvider, } from './firebase';
@@ -27,8 +29,16 @@ class App extends Component {
   render() {
     const {user} = this.state;
     return (
+      <Router>
+
       <div className="App">
         <header className="App-header">
+        <Switch>
+          <Route exact path='/' component={BlogContainer}/>
+          <Route path='/blog' component={BlogContainer}/>
+        </Switch>
+        
+        <BlogContainer/>
           <p>
             Welcome to Thom's website.
           </p>
@@ -46,6 +56,8 @@ class App extends Component {
         <main>
         </main>
       </div>
+      </Router>
+
     );
   }
 }

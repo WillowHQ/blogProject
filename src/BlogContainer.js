@@ -8,14 +8,14 @@ class BlogContainer extends React.Component {
 		blogs: [],
 	}
 	async componentWillMount() {
-		let blogSpace, blogAccessToken;
+		let space, accessToken;
 
-		blogSpace = process.env.REACT_APP_CONTENTFUL_BLOG_SPACE;
-		blogAccessToken= process.env.REACT_APP_CONTENTFUL_BLOG_ACCESS_TOKEN;
-		
+		space = process.env.REACT_APP_CONTENTFUL_BLOG_SPACE;
+		accessToken= process.env.REACT_APP_CONTENTFUL_BLOG_ACCESS_TOKEN;
+		console.log({space, accessToken})
 		const client = createClient({
-			space: blogSpace,
-			accessToken: blogAccessToken
+			space: space,
+			accessToken: accessToken
 		});
 
 		const entries = await client.getEntries({
@@ -29,7 +29,7 @@ class BlogContainer extends React.Component {
 		const {blogs} = this.state
 		
 		if (blogs.length >= 1) {
-			return <BlogLayout blogs={blogs}/> v4
+			return <BlogLayout blogs={blogs}/> 
 		}
 		else {
 			return <div/>

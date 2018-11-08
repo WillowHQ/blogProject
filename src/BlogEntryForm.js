@@ -1,4 +1,4 @@
-const contentful = require('contentful-management')
+const contentful = require('contentful')
 
 const client = contentful.createClient({
   accessToken: 'CFPAT-30dd814aa7c64891596e3ac4813b79905e3ed42de03600ec995a79e86689df21'

@@ -7,7 +7,6 @@ import './blog.css';
 const BlogSmallCard = (props) => (
 	<a className="blog-site-link" href={`/blog/${props.id}`}>
 		<div className="mobile-small-relative-card">
-			<img src={props.smallCardImage} width={props.isDesktop ? "" : "255px"} alt="small card image" />
 			<div className="mobile-small-absolute-card">
 				<p className="blog-small-title">{props.title}</p>
 			</div>
@@ -17,7 +16,6 @@ const BlogSmallCard = (props) => (
 const BlogLargeCard = (props) => (
 	<a className="site-link-big" href={`/blog/${props.id}`}>
 		<div className="mobile-large-card">
-			<img className="blog-large-image" id="big-image" src={props.largeCardImage} width="100%" alt="large card image" />
 			<div className="mobile-text-container">
 				<p className="mobile-large-header">{props.title}</p>
 				<p className="mobile-large-para">{props.text}</p>
@@ -45,18 +43,19 @@ class BlogLayout extends React.Component {
 		const { isDesktop } = this.props;
 
 		const blogEntries = this.props.blogs.map((blog, i) => {
-			const { smallCardImage, largeCardImage, title, body } = blog.fields;
+			const { title, body } = blog.fields;
+			console.log({title, body})	
 			const { id } = blog.sys;
 			if (i === 0)
+				
 				return (
 					<BlogLargeCard
 						id={id}
 						title={title}
-						text={this.trimText(body)}
-						largeCardImage={largeCardImage.fields.file.url}
+						text={"this.trimText(body)"}
 					/>
 				);
-			return <BlogSmallCard id={id} title={title} smallCardImage={smallCardImage.fields.file.url} isDesktop={isDesktop}/>;
+			return <BlogSmallCard id={id} title={title}  isDesktop={isDesktop}/>;
 		});
 		const BlogReaderWithBlog = ({ match }) => <BlogReader blog={this.getBlog(match.params.blogId)} />;
 		return (
